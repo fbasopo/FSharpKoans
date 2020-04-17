@@ -65,22 +65,22 @@ module ``08: Parametric polymorphism`` =
         let a = false
         let b = 't'
         x |> should be ofType<int>
-        y |> should be ofType<FILL_ME_IN>
-        z |> should be ofType<FILL_ME_IN>
-        a |> should be ofType<FILL_ME_IN>
-        b |> should be ofType<FILL_ME_IN>
+        y |> should be ofType<string>
+        z |> should be ofType<float>
+        a |> should be ofType<bool>
+        b |> should be ofType<char>
 
     [<Test>]
     let ``02 id: the simplest built-in generic function`` () =
         // `id` is the identify function: it takes an input ... and gives it back immediately.
-        id 8 |> should equal __
-        id 7.6 |> should equal __
-        id "wut!" |> should equal __
+        id 8 |> should equal  8
+        id 7.6 |> should equal 7.6
+        id "wut!" |> should equal "wut!"
         // id can be surprisingly useful.  Remember it :).
 
     [<Test>]
     let ``03 Defining a generic function`` () =
-        let f x y = __
+        let f x y = x,y,y
         f 4 5 |> should equal (4, 5, 5)
         f "k" 'p' |> should equal ("k", 'p', 'p')
      
@@ -94,8 +94,8 @@ module ``08: Parametric polymorphism`` =
         let a = Secnod (6.55, 7)
         let b = Thrid (fun k -> true, k, 8)
         // how do you write a generic type?
-        a |> should be ofType<FILL_ME_IN>
-        b |> should be ofType<FILL_ME_IN>
+        a |> should be ofType<GenericDiscriminatedUnionExample<float,int>>
+        b |> should be ofType<GenericDiscriminatedUnionExample<'a,bool>>
 
     type MyDiscriminatedUnion =
     | Furoth of FILL_ME_IN
