@@ -86,8 +86,8 @@ module ``13: On the Record`` =
 
     [<Test>]
     let ``07 Binding composed and decomposed structures using 'as'`` () =
-      let f (___ as _____) =
-         { __ with Year = __ + 3 }
+      let f (book as r) =
+         { r with Year = book.Year + 3 }
       f { Title="A Wizard of Earthsea"; Author="Ursula K. LeGuin"; Year=1968 }
       |> should equal { Title="A Wizard of Earthsea"; Author = "Ursula K. LeGuin"; Year = 1971 }
 
@@ -100,17 +100,17 @@ module ``13: On the Record`` =
     }
     // we might create this with: { Something=5; Blah=8; Otherwise=9.3; What=77,"hi",0.88 }
 
-    type MyRecord = {
-        Who : FILL_ME_IN // <-- should be generic
-        What : FILL_ME_IN // <-- should be generic, and a different type to Who
+    type MyRecord<'a,'b> = {
+        Who : 'a // <-- should be generic
+        What : 'b // <-- should be generic, and a different type to Who
         Where : string
     }
 
     [<Test>]
     let ``08 Creating a generic record`` () =
         // You need to edit the definition of MyRecord first!  It's just above this test.
-        let a = __
-        let b = __  
+        let a = {Who ="The Doctor";What =4.53; Where = "TTFN"}
+        let b = {Who ='R'; What = false; Where ="tiffin"}
         a.Who |> should equal "The Doctor"
         b.Who |> should equal 'R'
         a.What |> should equal 4.53
